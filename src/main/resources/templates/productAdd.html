@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<div th:insert="blocks/header"></div>-->
+<form th:action="${'/product/add'}" th:object="${product}" method="post">
+    <input type="text" th:field="*{productName}" name="productName" placeholder="Название товара">
+    <div style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
+    <br>
+    <input type="text" name="orderCost" th:field="*{price}" placeholder="Стоимость товара">
+    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    <br>
+    <select  name="materialName">
+        <div th:each="element : ${materials1}">
+            <option th:text="${element.materialName}"></option>
+        </div>
+    </select>
+    <select  name="sizeName">
+        <div th:each="element1 : ${productSizes1}">
+            <option th:text="${element1.sizeName}"></option>
+        </div>
+    </select>
+    <select  name="typeName">
+        <div th:each="element2 : ${productTypes1}">
+            <option th:text="${element2.typeName}"></option>
+        </div>
+    </select>
+    <button type="submit">Добавить товар</button>
+</form>
+</body>
+</html>

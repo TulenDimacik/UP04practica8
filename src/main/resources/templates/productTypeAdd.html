@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление вида товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<div th:insert="blocks/header"></div>-->
+<form th:action="${'/product/type/add'}" th:object="${productType}" method="post">
+    <input type="text" th:field="*{typeName}" name="typeName" placeholder="Название вида">
+    <div style="color: red" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></div>
+    <br>
+    <button type="submit">Добавить вид</button>
+</form>
+</body>
+</html>

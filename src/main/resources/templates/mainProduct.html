@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--    <link th:href="@{/css/style.css}" rel="stylesheet" />-->
+    <title>Товар</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<div th:insert="blocks/header"></div>-->
+<form th:action="${'/product'}">
+    <table>
+        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td><td>Другое</td></tr>
+        <tr th:each="el : ${products}">
+            <td th:text="${el.productName}"/>
+            <td th:text="${el.price}"/>
+            <td>
+                <from th:each="sz : ${el.getSize()}">
+                    <p th:text="${sz.getSizeName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="prdtp : ${el.getProductType()}">
+                    <p th:text="${prdtp.getTypeName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="mat : ${el.getMaterial()}">
+                    <p th:text="${mat.getMaterialName()}"/>
+                </from>
+            </td>
+            <td>
+                <form th:action="'/product/'+${el.idProduct}+'/remove'" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+                <a th:href="'/product/'+${el.idProduct}+'/edit'">Редактировать</a>
+            </td>
+        </tr>
+    </table>
+
+<!--    <div th:insert="blocks/footer"></div>-->
+</form>
+</body>
+</html>

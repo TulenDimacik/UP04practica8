@@ -1,0 +1,8 @@
+package com.example.practica8.repo;
+
+import com.example.practica8.models.Product;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ProductRepository  extends CrudRepository<Product,Long> {
+
+}

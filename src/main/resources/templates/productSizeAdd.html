@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление размера</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<div th:insert="blocks/header"></div>-->
+<form th:action="${'/product/size/add'}" th:object="${productSize}" method="post">
+    <input type="text" th:field="*{sizeName}" name="sizeName" placeholder="Название размера">
+    <div style="color: red" th:if="${#fields.hasErrors('sizeName')}" th:errors="*{sizeName}"></div>
+    <br>
+    <button type="submit">Добавить размер</button>
+</form>
+</body>
+</html>

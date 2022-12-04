@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>reg</title>
+</head>
+<body>
+<form th:action="@{/registration}" method="post">
+    <h1>Registration</h1>
+    <h2 th:if="${message}">
+        Пользователь уже существует
+    </h2>
+    <h3 th:text="${message}"/>
+    <h3 th:if="${param.logout}">
+        You have been logged out.
+    </h3>
+    <input type="text" name="usersurname" placeholder="Фамилия" required/>
+    <input type="text" name="usernamee" placeholder="Имя" required/>
+    <input type="text" name="userpatronymic" placeholder="Отчество" />
+    <input type="text" name="username" placeholder="Login" required/>
+    <input type="password" name="password" placeholder="Password" required/>
+    <input type="submit" value="Sign Up"/>
+    <a href="/login" target="_blank">Sign In</a>
+</form>
+</body>
+</html>

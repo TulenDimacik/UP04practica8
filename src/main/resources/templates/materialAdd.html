@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление материала</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<div th:insert="blocks/header"></div>-->
+<form th:action="${'/material/add'}" th:object="${material}" method="post">
+    <input type="text" th:field="*{materialName}" name="materialName" placeholder="Название материала">
+    <div style="color: red" th:if="${#fields.hasErrors('materialName')}" th:errors="*{materialName}"></div>
+    <br>
+    <button type="submit">Добавить материал</button>
+</form>
+</body>
+</html>
