@@ -1,23 +1,24 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
     <title>Виды продуктов</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<div th:insert="blocks/header"></div>-->
+<div th:insert="blocks/header"></div>
 <form th:action="${'/product/type'}">
     <table  class="table">
         <tr><td>Название вида</td><td>Другое</td></tr>
         <tr th:each="el : ${productTypes}"><td th:text="${el.typeName}"/>
             <td>
-                <form th:action="'/product/type/'+${el.idProductType}+'/remove'" method="post">
-                    <button type="submit">Удалить</button>
-                </form>
+                <a class="btn-outline-primary1" th:href="'/product/type/'+${el.idProductType}+'/remove'">Удалить❌</a>
             </td>
         </tr>
     </table>
-    <a th:href="'/product/type/add'">Добавить</a>
+    <a class="btn-outline-primary77"  th:href="'/product/type/add'">Добавить</a>
+    <div th:insert="blocks/footer"></div>
 </form>
 </body>
 </html>

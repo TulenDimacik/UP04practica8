@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Поставщики</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+
+
+<body >
+<div th:insert="blocks/header"></div>
+<form th:action="${'/supplier'}">
+    <table>
+        <tr><td>Название компании</td><td>Адрес компании</td><td>Другое</td></tr>
+        <tr th:each="el : ${suppliers}">
+            <td th:text="${el.companyName}"/>
+            <td th:text="${el.legalAddress}"/>
+            <td>
+                <a class="btn-outline-primary1" th:href="'/supplier/'+${el.idSupplier}+'/remove'">Удалить❌</a>
+                <p></p>
+                <a class="btn-outline-primary" th:href="'/supplier/'+${el.idSupplier}+'/edit'">Изменить✍</a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn-outline-primary77" th:href="'/supplier/add'">Добавить</a>
+
+        <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>
+

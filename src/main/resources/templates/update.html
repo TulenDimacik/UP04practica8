@@ -1,30 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Добавление звезды</title>
+    <title>Редактирование пользователя</title>
 </head>
 <body>
 
-<div class="container">
-    <form method="post" >
-        <div>
-            <input type="text" th:value="${user_object.username}" name="username" required>
-            <input type="text" th:value="${user_object.usernamee}" name="usernamee" required>
-            <input type="text" th:value="${user_object.userpatronymic}" name="userpatronymic" >
-            <input type="text" th:value="${user_object.usersurname}" name="usersurname" required>
-        </div>
-        <div th:each="role : ${roles}">
-            <input type="checkbox" th:id="${role}"
-                   th:name="${'roles[]'}" th:value="${role}"
-                   th:checked="${#lists.contains(user_object.roles,role)}">
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Редактирование пользователя</div>
+<div class="col-lg-12 login-form">
+    <form method="post">
+        <div class="col-lg-12 login-title">
+            <div>
+                <label style="margin-left: -85px" class="form-control-label">Логин</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:value="${user_object.username}" name="username" required>
+                <div  style="margin-bottom: -15px"></div>
+                <label style="margin-left: -100px" class="form-control-label">Имя</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:value="${user_object.usernamee}" name="usernamee" required>
+                <div  style="margin-bottom: -15px"></div>
+                <label style="margin-left: -75px" class="form-control-label">Отчество</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:value="${user_object.userpatronymic}" name="userpatronymic" >
+                <div  style="margin-bottom: -15px"></div>
+                <label style="margin-left: -75px" class="form-control-label">Фамилия</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:value="${user_object.usersurname}" name="usersurname" required>
+                <div th:each="role : ${roles}">
+                    <input type="checkbox" th:id="${role}"
+                           th:name="${'roles[]'}" th:value="${role}"
+                           th:checked="${#lists.contains(user_object.roles,role)}">
 
-            <label th:text="${role}"></label>
+                    <label style="font-size: 20px" th:text="${role}"></label>
+                </div>
+
+            </div>
         </div>
-        <button class="btn btn-success" type="submit">Изменить пользователя</button>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Сохранить</button>
+        </div>
     </form>
-
-    <a class="btn btn-danger" th:href="'/admin/' + ${user_object.id}">Назад</a>
 </div>
+<!--<div th:insert="blocks/footer"></div>-->
+
+
+<!--<div class="container">-->
+<!--    <form method="post" >-->
+<!--        <div>-->
+<!--            <input type="text" th:value="${user_object.username}" name="username" required>-->
+<!--            <input type="text" th:value="${user_object.usernamee}" name="usernamee" required>-->
+<!--            <input type="text" th:value="${user_object.userpatronymic}" name="userpatronymic" >-->
+<!--            <input type="text" th:value="${user_object.usersurname}" name="usersurname" required>-->
+<!--        </div>-->
+<!--        <div th:each="role : ${roles}">-->
+<!--            <input type="checkbox" th:id="${role}"-->
+<!--                   th:name="${'roles[]'}" th:value="${role}"-->
+<!--                   th:checked="${#lists.contains(user_object.roles,role)}">-->
+
+<!--            <label th:text="${role}"></label>-->
+<!--        </div>-->
+<!--        <button class="btn btn-success" type="submit">Изменить пользователя</button>-->
+<!--    </form>-->
+
+<!--    <a class="btn btn-danger" th:href="'/admin/' + ${user_object.id}">Назад</a>-->
+<!--</div>-->
 </body>
 </html>

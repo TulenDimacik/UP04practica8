@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Склады</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<form th:action="${'/warehouse'}">
+    <table  class="table">
+        <tr><td>Адрес склада</td><td>Другое</td></tr>
+        <tr th:each="el : ${warehouses}"><td th:text="${el.warehouseAddress}"/>
+            <td>
+                <a class="btn-outline-primary1" th:href="'/warehouse/'+${el.idWarehouse}+'/remove'">Удалить❌</a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn-outline-primary77" th:href="'/warehouse/add'">Добавить</a>
+</form>
+<div th:insert="blocks/footer"></div>
+</body>
+</html>

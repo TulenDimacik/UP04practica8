@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Добавление Накладной</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление Накладной</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/invoice/add'}" th:object="${invoice}" method="post">
+        <div class="col-lg-12 login-title">
+            <div>
+                <label style="margin-left: -75px" class="form-control-label">Товар</label>
+                <div style="margin-bottom: -15px"></div>
+                <select class="select"  name="productName">
+                    <div th:each="element : ${products}">
+                        <option class="option" th:text="${element.productName}"></option>
+                    </div>
+                </select>
+
+                <div ></div>
+                <label style="margin-left: 60px" class="form-control-label">Сотрудник</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="number">
+                    <div th:each="element1 : ${employees}">
+                        <option class="option" th:text="${element1.number}"></option>
+                    </div>
+                </select>
+                <div ></div>
+                <label style="margin-left: -100px" class="form-control-label">Склад</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="warehouseAddress">
+                    <div th:each="element2 : ${warehouses}">
+                        <option class="option" th:text="${element2.warehouseAddress}"></option>
+                    </div>
+                </select>
+                <div ></div>
+
+            </div>
+        </div>
+
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+
+
+<div th:insert="blocks/footer"></div>
+
+
+
+<!--&lt;!&ndash;<div th:insert="blocks/header"></div>&ndash;&gt;-->
+<!--<form th:action="${'/invoice/add'}" th:object="${invoice}" method="post">-->
+<!--    <select  name="productName">-->
+<!--        <div th:each="element : ${products}">-->
+<!--            <option th:text="${element.productName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="number">-->
+<!--        <div th:each="element1 : ${employees}">-->
+<!--            <option th:text="${element1.number}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="warehouseAddress">-->
+<!--        <div th:each="element2 : ${warehouses}">-->
+<!--            <option th:text="${element2.warehouseAddress}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <button type="submit">Добавить Накладную</button>-->
+<!--</form>-->
+</body>
+</html>

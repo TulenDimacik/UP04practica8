@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Изменение Контракта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление Контракта</div>
+<div class="col-lg-12 login-form">
+    <form th:each="el: ${contract}" th:object="${contract}" method="post">
+        <div class="col-lg-12 login-title">
+            <div>
+                <label style="margin-left: 53px" class="form-control-label">Дата заключения</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="date" th:field="*{conclusionDate}" name="conclusionDate" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('conclusionDate')}" th:errors="*{conclusionDate}"></div>
+                <div style="margin-bottom: -15px"></div>
+                <label style="margin-left: 55px" class="form-control-label">Дата расторжения</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="date" th:field="*{terminationDate}" name="terminationDate" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('terminationDate')}" th:errors="*{terminationDate}"></div>
+                <div style="margin-bottom: -15px"></div>
+
+                <label style="margin-left: 40px" class="form-control-label">Поставщик</label>
+                <div style="margin-bottom: -15px"></div>
+                <select class="select"  name="companyName">
+                    <div th:each="element : ${suppliers}">
+                        <option class="option" th:text="${element.companyName}"></option>
+                    </div>
+                </select>
+
+                <div ></div>
+                <label style="margin-left: 60px" class="form-control-label">Сотрудник</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="number">
+                    <div th:each="element1 : ${employees}">
+                        <option class="option" th:text="${element1.number}"></option>
+                    </div>
+                </select>
+                <div ></div>
+                <label style="margin-left: -65px" class="form-control-label">Товар</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="productName">
+                    <div th:each="element2 : ${products}">
+                        <option class="option" th:text="${element2.productName}"></option>
+                    </div>
+                </select>
+
+
+            </div>
+        </div>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
+
+
+
+<!--<div th:insert="blocks/header"></div>-->
+<!--<form th:each="el: ${contract}" th:object="${contract}" method="post">-->
+<!--    <input type="date"  th:field="*{conclusionDate}" name="conclusionDate" placeholder="Дата заключения">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('conclusionDate')}" th:errors="*{conclusionDate}"></div>-->
+<!--    <br>-->
+<!--    <input type="date" name="terminationDate"  th:field="*{terminationDate}" placeholder="Дата расторжения">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('terminationDate')}" th:errors="*{terminationDate}"></div>-->
+<!--    <br>-->
+<!--    <select  name="productName">-->
+<!--        <div th:each="mat : ${products}">-->
+<!--            <option th:text="${mat.productName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="number">-->
+<!--        <div th:each="element1 : ${employees}">-->
+<!--            <option th:text="${element1.number}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="companyName">-->
+<!--        <div th:each="element2 : ${suppliers}">-->
+<!--            <option th:text="${element2.companyName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <form method="post">-->
+<!--        <button type="submit">Сохранить изменения</button>-->
+<!--    </form>-->
+<!--</form>-->
+</body>
+</html>

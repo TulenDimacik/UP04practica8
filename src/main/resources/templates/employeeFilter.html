@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<form th:action="${'/employee/filter/result'}" method="post">
+    <label  class="form-control-label">Поиск</label>
+    <div ></div>
+    <input type="text" placeholder="Номер паспорта" name="number">
+    <table>
+        <tr><td>Серия паспорта</td><td>Номер паспорта</td><td>Логин</td></tr>
+        <tr th:each="el : ${result}">
+            <td th:text="${el.series}"></td>
+            <td th:text="${el.number}"></td>
+            <td>
+                <from th:each="prd : ${el.getUser()}">
+                    <p th:text="${prd.getUsername()}"/>
+                </from>
+            </td>
+        </tr>
+    </table>
+    <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>

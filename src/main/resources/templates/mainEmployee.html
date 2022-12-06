@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+      <link th:href="@{/css/style.css}" rel="stylesheet" />
+  <title>Сотрудники</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<form th:action="${'/employee'}">
+
+  <table>
+    <tr><td>Серия паспорта</td><td>Номер паспорта</td><td>Логин</td><td>Другое</td></tr>
+    <tr th:each="el : ${employees}">
+      <td th:text="${el.series}"></td>
+      <td th:text="${el.number}"></td>
+      <td>
+        <from th:each="prd : ${el.getUser()}">
+          <p th:text="${prd.getUsername()}"/>
+        </from>
+      </td>
+      <td>
+        <a class="btn-outline-primary1" th:href="'/employee/'+${el.id}+'/remove'">Удалить❌</a>
+      </td>
+    </tr>
+  </table>
+
+  <a class="btn-outline-primary77" th:href="'/employee/add'">Добавить сотрудника</a>
+  <div>
+  </div>
+  <a class="btn-outline-primary77" th:href="'/employee/filter'">Поиск</a>
+      <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>

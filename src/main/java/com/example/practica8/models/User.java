@@ -2,6 +2,7 @@ package com.example.practica8.models;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -21,12 +22,16 @@ public class User {
     @CollectionTable(name="user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+    @OneToOne(optional = true, mappedBy = "user")//та же аннотация mappedBY сторона которая ссылается на переменную в Person
+    private Employee employee;
 
+    @OneToMany(mappedBy = "user")
+    private Collection<Cart> carts;
 
     public User() {
     }
 
-    public User(String usersurname, String username, String usernamee, String userpatronymic, String password, boolean active, Set<Role> roles) {
+    public User(String usersurname, String username, String usernamee, String userpatronymic, String password, boolean active, Set<Role> roles, Employee employee) {
         this.usersurname = usersurname;
         this.username = username;
         this.usernamee = usernamee;
@@ -34,6 +39,7 @@ public class User {
         this.password = password;
         this.active = active;
         this.roles = roles;
+        this.employee = employee;
     }
 
     public Long getId() {
@@ -98,5 +104,21 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Collection<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Collection<Cart> carts) {
+        this.carts = carts;
     }
 }

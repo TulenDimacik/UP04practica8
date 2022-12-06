@@ -18,6 +18,8 @@ public class ProductType {
     @OneToMany(mappedBy = "productType", fetch = FetchType.EAGER)
     private Collection<Product> products;
 
+
+
     public Long getIdProductType() {return idProductType;}
 
     public void setIdProductType(Long idProductType) {this.idProductType = idProductType;}

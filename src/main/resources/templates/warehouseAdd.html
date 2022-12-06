@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<head>
+  <title>Добавление склада</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление Склада</div>
+<div class="col-lg-12 login-form">
+  <form th:action="${'/warehouse/add'}" th:object="${warehouse}" method="post">
+    <div class="col-lg-12 login-title">
+      <label style="margin-left: -80px" class="form-control-label">Адрес</label>
+      <div style="margin-bottom: -15px"></div>
+      <input type="text" th:field="*{warehouseAddress}" name="warehouseAddress" >
+      <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('warehouseAddress')}" th:errors="*{warehouseAddress}"></div>
+    </div>
+    <div class="center-divv">
+      <button class="btn-outline-primary77" type="submit">Добавить</button>
+    </div>
+  </form>
+</div>
+<div th:insert="blocks/footer"></div>
+<!--<div th:insert="blocks/footer"></div>-->
+<!--<form th:action="${'/warehouse/add'}" th:object="${warehouse}" method="post">-->
+<!--  <input type="text" th:field="*{warehouseAddress}" name="warehouseAddress" placeholder="Адрес склада">-->
+<!--  <div style="color: red" th:if="${#fields.hasErrors('warehouseAddress')}" th:errors="*{warehouseAddress}"></div>-->
+<!--  <br>-->
+<!--  <button type="submit">Добавить склад</button>-->
+<!--</form>-->
+</body>
+</html>

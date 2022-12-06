@@ -1,16 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <title>Добавление вида товара</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<div th:insert="blocks/header"></div>-->
-<form th:action="${'/product/type/add'}" th:object="${productType}" method="post">
-    <input type="text" th:field="*{typeName}" name="typeName" placeholder="Название вида">
-    <div style="color: red" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></div>
-    <br>
-    <button type="submit">Добавить вид</button>
-</form>
+
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление вида товара</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/product/type/add'}" th:object="${productType}" method="post">
+        <div class="col-lg-12 login-title">
+            <label style="margin-left: -60px" class="form-control-label">Вид товара</label>
+            <div style="margin-bottom: -15px"></div>
+            <input type="text" th:field="*{typeName}" name="typeName" >
+            <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></div>
+        </div>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
+
+<!--&lt;!&ndash;<div th:insert="blocks/header"></div>&ndash;&gt;-->
+<!--<form th:action="${'/product/type/add'}" th:object="${productType}" method="post">-->
+<!--    <input type="text" th:field="*{typeName}" name="typeName" placeholder="Название вида">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></div>-->
+<!--    <br>-->
+<!--    <button type="submit">Добавить вид</button>-->
+<!--</form>-->
 </body>
 </html>

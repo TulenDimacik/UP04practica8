@@ -9,13 +9,16 @@ import com.example.practica8.repo.ProductRepository;
 import com.example.practica8.repo.ProductSizeRepository;
 import com.example.practica8.repo.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
+@PreAuthorize("hasAnyAuthority('SELLMANAGER')")
 @Controller
 public class ProductController {
 
@@ -107,6 +110,18 @@ public class ProductController {
         return "productEdit";
     }
 
+    @GetMapping("/product/filter")
+    public String productFilter(Model model)
+    {
+        return "productFilter";
+    }
+    @PostMapping("/product/filter/result")
+    public String productResult(@RequestParam String productName, Model model)
+    {
+        List<Product> result = productRepository.findByProductNameContains(productName);
+        model.addAttribute("result", result);
+        return "productFilter";
+    }
     @PostMapping ("/product/{idProduct}/edit")
     public  String productUpdate(@ModelAttribute("product") @Valid Product product1, BindingResult bindingResult,
                                  @PathVariable("idProduct")long idProduct,
@@ -132,7 +147,7 @@ public class ProductController {
         productRepository.save(product1);
         return "redirect:/product";
     }
-    @PostMapping("/product/{idProduct}/remove")
+    @GetMapping("/product/{idProduct}/remove")
     public String productDelete(@PathVariable("idProduct") long idProduct, Model model){
         Product product = productRepository.findById(idProduct).orElseThrow();
         productRepository.delete(product);

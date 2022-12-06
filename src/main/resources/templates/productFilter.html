@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Поиск товара</title>
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<form method="post" th:action="${'/product/filter/result'}">
+
+    <label  class="form-control-label">Поиск</label>
+    <div ></div>
+    <input type="text" placeholder="Название товара" name="productName">
+    <table>
+        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td></tr>
+        <tr th:each="el : ${result}">
+            <td th:text="${el.productName}"/>
+            <td th:text="${el.price}"/>
+            <td>
+                <from th:each="sz : ${el.getSize()}">
+                    <p th:text="${sz.getSizeName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="prdtp : ${el.getProductType()}">
+                    <p th:text="${prdtp.getTypeName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="mat : ${el.getMaterial()}">
+                    <p th:text="${mat.getMaterialName()}"/>
+                </from>
+            </td>
+        </tr>
+    </table>
+<!--    <a class="btn-outline-primary77" th:href="'/product/'">Добавить</a>-->
+
+    <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>

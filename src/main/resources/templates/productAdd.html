@@ -1,34 +1,89 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <title>Добавление товара</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление Товара</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/product/add'}" th:object="${product}" method="post">
+        <div class="col-lg-12 login-title">
+            <div>
+                <label style="margin-left: -15px" class="form-control-label">Название товара</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:field="*{productName}" name="productName" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
+                <div style="margin-bottom: -15px"></div>
+                <label style="margin-left: -15px" class="form-control-label">Стоимость товара</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:field="*{price}" name="price" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                <div style="margin-bottom: -15px"></div>
+
+                <label style="margin-left: -15px" class="form-control-label">Материал</label>
+                <div style="margin-bottom: -15px"></div>
+                <select class="select"  name="materialName">
+                    <div th:each="element : ${materials1}">
+                        <option class="option" th:text="${element.materialName}"></option>
+                    </div>
+                </select>
+
+                <div ></div>
+                <label style="margin-left: 40px" class="form-control-label">Размер</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="sizeName">
+                    <div th:each="element1 : ${productSizes1}">
+                        <option class="option" th:text="${element1.sizeName}"></option>
+                    </div>
+                </select>
+                <div ></div>
+                <label style="margin-left: -10px" class="form-control-label">Вид</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="typeName">
+                    <div th:each="element2 : ${productTypes1}">
+                        <option class="option" th:text="${element2.typeName}"></option>
+                    </div>
+                </select>
+
+
+            </div>
+        </div>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
+
 <!--<div th:insert="blocks/header"></div>-->
-<form th:action="${'/product/add'}" th:object="${product}" method="post">
-    <input type="text" th:field="*{productName}" name="productName" placeholder="Название товара">
-    <div style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>
-    <br>
-    <input type="text" name="orderCost" th:field="*{price}" placeholder="Стоимость товара">
-    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
-    <br>
-    <select  name="materialName">
-        <div th:each="element : ${materials1}">
-            <option th:text="${element.materialName}"></option>
-        </div>
-    </select>
-    <select  name="sizeName">
-        <div th:each="element1 : ${productSizes1}">
-            <option th:text="${element1.sizeName}"></option>
-        </div>
-    </select>
-    <select  name="typeName">
-        <div th:each="element2 : ${productTypes1}">
-            <option th:text="${element2.typeName}"></option>
-        </div>
-    </select>
-    <button type="submit">Добавить товар</button>
-</form>
+<!--<form th:action="${'/product/add'}" th:object="${product}" method="post">-->
+<!--    <input type="text" th:field="*{productName}" name="productName" placeholder="Название товара">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></div>-->
+<!--    <br>-->
+<!--    <input type="text" name="orderCost" th:field="*{price}" placeholder="Стоимость товара">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>-->
+<!--    <br>-->
+<!--    <select  name="materialName">-->
+<!--        <div th:each="element : ${materials1}">-->
+<!--            <option th:text="${element.materialName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="sizeName">-->
+<!--        <div th:each="element1 : ${productSizes1}">-->
+<!--            <option th:text="${element1.sizeName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <select  name="typeName">-->
+<!--        <div th:each="element2 : ${productTypes1}">-->
+<!--            <option th:text="${element2.typeName}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <button type="submit">Добавить товар</button>-->
+<!--</form>-->
 </body>
 </html>

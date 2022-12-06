@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Добавление сотрудника</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление Сотрудника</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/employee/add'}" th:object="${employee}" method="post">
+        <div class="col-lg-12 login-title">
+            <div>
+                <label style="margin-left: -25px" class="form-control-label">Серия паспорта</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:field="*{series}" name="series" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('series')}" th:errors="*{series}"></div>
+                <div style="margin-bottom: -15px"></div>
+                <label style="margin-left: -25px" class="form-control-label">Номер паспорта</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:field="*{number}" name="number" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
+                <div style="margin-bottom: -15px"></div>
+
+                <label style="margin-left: 40px" class="form-control-label">Логин</label>
+                <div style="margin-bottom: -15px"></div>
+                <select class="select"  name="username">
+                    <div th:each="element : ${users}">
+                        <option class="option" th:text="${element.username}"></option>
+                    </div>
+                </select>
+
+            </div>
+        </div>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
+
+<!--<div th:insert="blocks/header"></div>-->
+<!--<form th:action="${'/employee/add'}" th:object="${employee}" method="post">-->
+<!--    <input type="text" th:field="*{series}" name="series" placeholder="Серия паспорта">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('series')}" th:errors="*{series}"></div>-->
+<!--    <br>-->
+<!--    <input type="text" name="number" th:field="*{number}" placeholder="Номер паспорта">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>-->
+<!--    <br>-->
+<!--    <select name="username">-->
+<!--        <div th:each="element : ${users}">-->
+<!--            <option th:text="${element.username}"></option>-->
+<!--        </div>-->
+<!--    </select>-->
+<!--    <br>-->
+<!--    <button type="submit">Добавить сотрудника</button>-->
+<!--</form>-->
+</body>
+</html>

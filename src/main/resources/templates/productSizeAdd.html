@@ -1,16 +1,27 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <title>Добавление размера</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<div th:insert="blocks/header"></div>-->
-<form th:action="${'/product/size/add'}" th:object="${productSize}" method="post">
-    <input type="text" th:field="*{sizeName}" name="sizeName" placeholder="Название размера">
-    <div style="color: red" th:if="${#fields.hasErrors('sizeName')}" th:errors="*{sizeName}"></div>
-    <br>
-    <button type="submit">Добавить размер</button>
-</form>
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление размера</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/product/size/add'}" th:object="${productSize}" method="post">
+            <div class="col-lg-12 login-title">
+                <label style="margin-left: -80px" class="form-control-label">Размер</label>
+                <div style="margin-bottom: -15px"></div>
+                <input type="text" th:field="*{sizeName}" name="sizeName" >
+                <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('sizeName')}" th:errors="*{sizeName}"></div>
+            </div>
+        <div class="center-divv">
+        <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+<div th:insert="blocks/footer"></div>
 </body>
 </html>

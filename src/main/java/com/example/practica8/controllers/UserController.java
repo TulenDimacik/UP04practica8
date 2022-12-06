@@ -28,12 +28,12 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/{id}")
-    public String detailView(@PathVariable Long id, Model model)
-    {
-        model.addAttribute("user_object",userRepository.findById(id).orElseThrow());
-        return "info";
-    }
+//    @GetMapping("/{id}")
+//    public String detailView(@PathVariable Long id, Model model)
+//    {
+//        model.addAttribute("user_object",userRepository.findById(id).orElseThrow());
+//        return "info";
+//    }
 
     @GetMapping("/{id}/update")
     public String updView(@PathVariable Long id, Model model)

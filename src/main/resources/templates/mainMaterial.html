@@ -1,25 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <title>Материалы</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<div th:insert="blocks/header"></div>-->
+<div th:insert="blocks/header"></div>
 <form th:action="${'/material'}">
     <table  class="table">
         <tr><td>Название материала</td><td>Другое</td></tr>
         <tr th:each="el : ${materials}"><td th:text="${el.materialName}"/>
             <td>
-                <form th:action="'/material/'+${el.idMaterial}+'/remove'" method="post">
-                    <button type="submit">Удалить</button>
-                </form>
+                <a class="btn-outline-primary1" th:href="'/material/'+${el.idMaterial}+'/remove'">Удалить❌</a>
             </td>
         </tr>
     </table>
-    <form th:action="'/material/add'" >
-        <button type="submit">Добавить</button>
-    </form>
+    <a class="btn-outline-primary77" th:href="'/material/add'">Добавить</a>
+    <div th:insert="blocks/footer"></div>
 </form>
 </body>
 </html>

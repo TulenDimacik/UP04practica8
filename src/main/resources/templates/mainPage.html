@@ -8,7 +8,7 @@
 
 <body >
 <div th:insert="blocks/header"></div>
-<form th:action="${'/product'}">
+<form th:action="${'/main'}" th:each="ff : ${users}">
     <table>
         <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td><td>Другое</td></tr>
         <tr th:each="el : ${products}">
@@ -30,15 +30,10 @@
                 </from>
             </td>
             <td>
-                <a class="btn-outline-primary1" th:href="'/product/'+${el.idProduct}+'/remove'">Удалить❌</a>
-                <p></p>
-                <a class="btn-outline-primary" th:href="'/product/'+${el.idProduct}+'/edit'">Изменить✍</a>
+                <a class="btn-outline-primary1" th:href="'/main/'+${ff.id}+'/'+${el.idProduct}+'/add'">В корзину 🛒</a>
             </td>
         </tr>
     </table>
-    <a class="btn-outline-primary77" th:href="'/product/add'">Добавить</a>
-    <div></div>
-    <a class="btn-outline-primary77" th:href="'/product/filter'">Поиск</a>
 
     <div th:insert="blocks/footer"></div>
 </form>

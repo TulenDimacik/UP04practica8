@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+        <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Накладные</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<form th:action="${'/invoice'}">
+    <table>
+        <tr><td>Сотрудник</td><td>Принятый товар</td><td>Адрес склада</td><td>Другое</td></tr>
+        <tr th:each="el : ${invoices}">
+            <td>
+                <from th:each="us : ${el.getEmployee()}">
+                    <p th:text="${us.getNumber()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="prd : ${el.getProduct()}">
+                    <p th:text="${prd.getProductName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="wh : ${el.getWarehouse()}">
+                    <p th:text="${wh.getWarehouseAddress()}"/>
+                </from>
+            </td>
+            <td>
+                <a class="btn-outline-primary1" th:href="'/invoice/'+${el.idInvoice}+'/remove'">Удалить❌</a>
+                <p></p>
+                <a class="btn-outline-primary" th:href="'/invoice/'+${el.idInvoice}+'/edit'">Изменить✍</a>
+            </td>
+        </tr>
+    </table>
+
+    <a href="/invoice/add" class="btn-outline-primary77">Добавить накладную</a>
+
+        <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>

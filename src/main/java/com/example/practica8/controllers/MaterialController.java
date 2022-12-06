@@ -3,6 +3,7 @@ package com.example.practica8.controllers;
 import com.example.practica8.models.Material;
 import com.example.practica8.repo.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+@PreAuthorize("hasAnyAuthority('SELLMANAGER')")
 @Controller
 public class MaterialController {
     @Autowired
@@ -43,7 +45,7 @@ public class MaterialController {
         return "redirect:/material";
     }
 
-    @PostMapping("/material/{idMaterial}/remove")
+    @GetMapping("/material/{idMaterial}/remove")
     public String materialDelete(@PathVariable("idMaterial") long idMaterial, Model model){
         Material material = materialRepository.findById(idMaterial).orElseThrow();
         materialRepository.delete(material);

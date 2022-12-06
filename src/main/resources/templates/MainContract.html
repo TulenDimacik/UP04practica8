@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Контракты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body >
+<div th:insert="blocks/header"></div>
+<form th:action="${'/contract'}">
+    <table>
+        <tr><td>Дата заключения</td><td>Дата расторжения</td><td>Сотрудник</td><td>Поставщик</td><td>Товар</td><td>Другое</td></tr>
+        <tr th:each="el : ${contracts}">
+            <td th:text="${el.conclusionDate}"/>
+            <td th:text="${el.terminationDate}"/>
+            <td>
+                <from th:each="em : ${el.getEmployee()}">
+                    <p th:text="${em.getNumber()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="sup : ${el.getSupplier()}">
+                    <p th:text="${sup.getCompanyName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="pr : ${el.getProduct()}">
+                    <p th:text="${pr.getProductName()}"/>
+                </from>
+            </td>
+            <td>
+                <a class="btn-outline-primary1" th:href="'/contract/'+${el.idContract}+'/remove'">Удалить❌</a>
+                <p></p>
+                <a class="btn-outline-primary" th:href="'/contract/'+${el.idContract}+'/edit'">Изменить✍</a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn-outline-primary77" th:href="'/contract/add'">Добавить</a>
+
+        <div th:insert="blocks/footer"></div>
+</form>
+</body>
+</html>
+

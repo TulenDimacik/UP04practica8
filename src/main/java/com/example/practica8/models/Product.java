@@ -2,6 +2,7 @@ package com.example.practica8.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "products")
@@ -16,12 +17,21 @@ public class Product {
     @Min(value = 0,message ="Значение не должно быть меньше 0")
     @Max(value = 1000000,message = "Значение не должно быть больше 1млн.")
     private float price;
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true)
     private ProductSize productSize;
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true)
     private ProductType productType;
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true)
     private Material material;
+
+    @OneToMany(mappedBy = "product")
+    private Collection<Invoice> invoices;
+
+    @OneToMany(mappedBy = "product")
+    private Collection<Contract> contracts;
+
+    @OneToMany(mappedBy = "product")
+    private Collection<Cart> carts;
 
     public Long getIdProduct() {return idProduct;}
 
@@ -51,4 +61,27 @@ public class Product {
         this.material = material;
     }
 
+    public Collection<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(Collection<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
+    public Collection<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Collection<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    public Collection<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Collection<Cart> carts) {
+        this.carts = carts;
+    }
 }
