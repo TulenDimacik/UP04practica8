@@ -21,7 +21,7 @@
                 <div style="margin-bottom: -15px"></div>
                 <label style="margin-left: -15px" class="form-control-label">Стоимость товара</label>
                 <div style="margin-bottom: -15px"></div>
-                <input type="text" th:field="*{price}" name="price" >
+                <input type="text" th:field="*{price}" required name="price" >
                 <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
                 <div style="margin-bottom: -15px"></div>
 
@@ -49,7 +49,14 @@
                         <option class="option" th:text="${element2.typeName}"></option>
                     </div>
                 </select>
-
+                <div ></div>
+                <label style="margin-left: -10px" class="form-control-label">Сертификат</label>
+                <div style="margin-bottom: -15px"></div>
+                <select  class="select" name="certificateName">
+                    <div th:each="element3 : ${certificates}">
+                        <option class="option" th:text="${element3.certificateName}"></option>
+                    </div>
+                </select>
 
             </div>
         </div>

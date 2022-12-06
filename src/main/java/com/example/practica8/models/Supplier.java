@@ -16,7 +16,7 @@ public class Supplier {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 5,max =60, message = "Размер должен быть от 5 до 60")
     private String legalAddress;
-    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER,  cascade = CascadeType.ALL )
     private Collection<Contract> contracts;
 
     public Long getIdSupplier() {

@@ -15,7 +15,7 @@ public class ProductSize {
     @Size(min = 1,max =15, message = "Размер должен быть от 1 до 15")
     private String sizeName;
 
-    @OneToMany(mappedBy = "productSize", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "productSize", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     public Long getIdSize() {return idSize;}

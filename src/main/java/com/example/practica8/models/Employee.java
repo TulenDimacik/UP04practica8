@@ -19,7 +19,7 @@ public class Employee {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 6,max =6, message = "Номер должен состоять из 6 цифр")
     private String number;
-    @OneToOne(optional = true, cascade = CascadeType.ALL)// обязательное или нет каскад - взаимодействие с данными в одной из сторон
+    @OneToOne(optional = true, cascade = CascadeType.ALL, orphanRemoval = true)// обязательное или нет каскад - взаимодействие с данными в одной из сторон
     //указываем у главной стороны при удалении пользователя удаляется и сам паспорт
     //name - id паспорта при связи
     @JoinColumn(name="user_id")

@@ -25,9 +25,6 @@ public class User {
     @OneToOne(optional = true, mappedBy = "user")//та же аннотация mappedBY сторона которая ссылается на переменную в Person
     private Employee employee;
 
-    @OneToMany(mappedBy = "user")
-    private Collection<Cart> carts;
-
     public User() {
     }
 
@@ -114,11 +111,4 @@ public class User {
         this.employee = employee;
     }
 
-    public Collection<Cart> getCarts() {
-        return carts;
-    }
-
-    public void setCarts(Collection<Cart> carts) {
-        this.carts = carts;
-    }
 }

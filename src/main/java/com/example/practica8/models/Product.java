@@ -24,14 +24,15 @@ public class Product {
     @ManyToOne(optional = true)
     private Material material;
 
-    @OneToMany(mappedBy = "product")
+    @ManyToOne(optional = true)
+    private Certificate certificate;
+
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Invoice> invoices;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",  cascade = CascadeType.ALL)
     private Collection<Contract> contracts;
 
-    @OneToMany(mappedBy = "product")
-    private Collection<Cart> carts;
 
     public Long getIdProduct() {return idProduct;}
 
@@ -77,11 +78,11 @@ public class Product {
         this.contracts = contracts;
     }
 
-    public Collection<Cart> getCarts() {
-        return carts;
+    public Certificate getCertificate() {
+        return certificate;
     }
 
-    public void setCarts(Collection<Cart> carts) {
-        this.carts = carts;
+    public void setCertificate(Certificate certificate) {
+        this.certificate = certificate;
     }
 }

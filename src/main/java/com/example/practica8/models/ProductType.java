@@ -15,7 +15,7 @@ public class ProductType {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 1,max =15, message = "Вид товара должен быть от 1 до 15")
     private String typeName;
-    @OneToMany(mappedBy = "productType", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "productType", fetch = FetchType.EAGER ,  cascade = CascadeType.ALL)
     private Collection<Product> products;
 
 

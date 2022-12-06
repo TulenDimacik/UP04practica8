@@ -26,13 +26,11 @@ public class MaterialController {
         model.addAttribute("materials",materials);
         return "mainMaterial";
     }
-
     @GetMapping("/material/add") //переходит на вью
     public String matAdd(@ModelAttribute("material") Material material, Model model)
     {
         return "materialAdd";
     }
-
     @PostMapping("/material/add")
     public String materialAdd(@ModelAttribute("material") @Valid Material material,
                               BindingResult bindingResult,

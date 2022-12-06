@@ -1,13 +1,7 @@
 package com.example.practica8.controllers;
 
-import com.example.practica8.models.Material;
-import com.example.practica8.models.Product;
-import com.example.practica8.models.ProductSize;
-import com.example.practica8.models.ProductType;
-import com.example.practica8.repo.MaterialRepository;
-import com.example.practica8.repo.ProductRepository;
-import com.example.practica8.repo.ProductSizeRepository;
-import com.example.practica8.repo.ProductTypeRepository;
+import com.example.practica8.models.*;
+import com.example.practica8.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -34,6 +28,9 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    CertificateRepository certificateRepository;
+
     @GetMapping("/product")
     public String productMain(Model model)
     {
@@ -45,6 +42,9 @@ public class ProductController {
 
         Iterable<ProductType> productTypes = productTypeRepository.findAll();
         model.addAttribute("productTypes",productTypes );
+
+        Iterable<Certificate> certificates = certificateRepository.findAll();
+        model.addAttribute("certificates",certificates );
 
         Iterable<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
@@ -60,8 +60,12 @@ public class ProductController {
         Iterable<ProductSize> productSizes = productSizeRepository.findAll();
         model.addAttribute("productSizes1",productSizes );
 
+        Iterable<Certificate> certificates = certificateRepository.findAll();
+        model.addAttribute("certificates",certificates );
+
         Iterable<ProductType> productTypes = productTypeRepository.findAll();
         model.addAttribute("productTypes1",productTypes );
+
 
         return "productAdd";
     }
@@ -72,6 +76,7 @@ public class ProductController {
                             @RequestParam(defaultValue = "") String materialName,
                             @RequestParam(defaultValue = "") String sizeName,
                             @RequestParam(defaultValue = "") String typeName,
+                             @RequestParam(defaultValue = "") String certificateName,
                             Model model)
     {
         if(bindingResult.hasErrors()) {
@@ -81,13 +86,18 @@ public class ProductController {
             Iterable<ProductSize> productSizes = productSizeRepository.findAll();
             model.addAttribute("productSizes1",productSizes );
 
+            Iterable<Certificate> certificates = certificateRepository.findAll();
+            model.addAttribute("certificates",certificates );
+
             Iterable<ProductType> productTypes = productTypeRepository.findAll();
             model.addAttribute("productTypes1",productTypes );
             return "productAdd";
         }
+
         product.setMaterial(materialRepository.findByMaterialName(materialName));
         product.setSize(productSizeRepository.findBySizeName(sizeName));
         product.setProductType(productTypeRepository.findByTypeName(typeName));
+        product.setCertificate(certificateRepository.findByCertificateName(certificateName));
         productRepository.save(product);
         return "redirect:/product";
     }
@@ -103,6 +113,8 @@ public class ProductController {
 
         Iterable<ProductSize> productSizes = productSizeRepository.findAll();
         model.addAttribute("productSizes",productSizes );
+        Iterable<Certificate> certificates = certificateRepository.findAll();
+        model.addAttribute("certificates",certificates );
 
         Iterable<ProductType> productTypes = productTypeRepository.findAll();
         model.addAttribute("productTypes",productTypes );
@@ -127,7 +139,9 @@ public class ProductController {
                                  @PathVariable("idProduct")long idProduct,
                                  @RequestParam String materialName,
                                  @RequestParam String sizeName,
-                                 @RequestParam String typeName,Model model)
+                                 @RequestParam String typeName,
+                                 @RequestParam(defaultValue = "") String certificateName,
+                                 Model model)
     {
         if(bindingResult.hasErrors()) {
 
@@ -139,8 +153,12 @@ public class ProductController {
 
             Iterable<ProductType> productTypes = productTypeRepository.findAll();
             model.addAttribute("productTypes",productTypes );
+            Iterable<Certificate> certificates = certificateRepository.findAll();
+            model.addAttribute("certificates",certificates );
+
             return "productEdit";
         }
+        product1.setCertificate(certificateRepository.findByCertificateName(certificateName));
         product1.setMaterial(materialRepository.findByMaterialName(materialName));
         product1.setSize(productSizeRepository.findBySizeName(sizeName));
         product1.setProductType(productTypeRepository.findByTypeName(typeName));

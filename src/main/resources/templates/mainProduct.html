@@ -10,7 +10,7 @@
 <div th:insert="blocks/header"></div>
 <form th:action="${'/product'}">
     <table>
-        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td><td>Другое</td></tr>
+        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td><td>Сертификат</td><td>Другое</td></tr>
         <tr th:each="el : ${products}">
             <td th:text="${el.productName}"/>
             <td th:text="${el.price}"/>
@@ -27,6 +27,11 @@
             <td>
                 <from th:each="mat : ${el.getMaterial()}">
                     <p th:text="${mat.getMaterialName()}"/>
+                </from>
+            </td>
+            <td>
+                <from th:each="cer : ${el.getCertificate()}">
+                    <p th:text="${cer.getCertificateName}"/>
                 </from>
             </td>
             <td>

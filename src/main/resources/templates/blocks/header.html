@@ -18,16 +18,16 @@
             <form sec:authorize="!isAuthenticated()" th:action="@{/login}" method="post">
                 <button style="border-radius: 2px; border-color: red;" type="submit" sec:authorize="!isAuthenticated()" href="/login"
                         class="btn-outline-primary2">
-                    Login
+                    Войти
                 </button>
                 <a href="/registration"
                    class="btn-outline-primary3">
-                     Sign up</a>
+                     Регистрация</a>
             </form>
             <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
                 <button type="submit" href="/login"
                         class="btn-outline-primary1">
-                     Logout
+                     Выйти
                 </button>
             </form>
         </div>
@@ -46,12 +46,12 @@
                 <!--                    <a class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"-->
                 <!--                       href="/movie" data-mdb-ripple="true" data-mdb-ripple-color="light">Кино</a>-->
                 <!--                </li>-->
-                <li class="nav-item"  >
+                <li class="nav-item" sec:authorize="hasAuthority('ADMIN')" >
                     <a class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                        href="/admin/a" data-mdb-ripple="true" data-mdb-ripple-color="light">Админ</a>
                 </li>
 
-                <li >
+                <li sec:authorize="hasAuthority('ZAKUPMANAGER')" >
                     <button id="teachDropdownNavbarLink" data-dropdown-toggle="teachDropdownNavbar"
                             class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                         Меню менеджера закупок
@@ -68,19 +68,23 @@
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-400"
                             aria-labelledby="dropdownLargeButton">
 
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('ZAKUPMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/warehouse" data-mdb-ripple="true" data-mdb-ripple-color="light">Склады</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('ZAKUPMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/invoice" data-mdb-ripple="true" data-mdb-ripple-color="light">Накладные</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('ZAKUPMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/supplier" data-mdb-ripple="true" data-mdb-ripple-color="light">Поставщики</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('ZAKUPMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/contract" data-mdb-ripple="true"
                                    data-mdb-ripple-color="light">Контракты</a>
@@ -88,10 +92,6 @@
                         </ul>
                     </div>
                 </li>
-
-
-
-
 
 <!--                <li sec:authorize="hasAuthority('USER')">-->
 <!--                    <button data-dropdown-toggle="userDropdownNavbar"-->
@@ -135,7 +135,7 @@
 
 
 
-                <li>
+                <li sec:authorize="hasAuthority('SELLMANAGER')">
                     <button id="userDropdownNavbarLink" data-dropdown-toggle="userDropdownNavbar"
                             class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                         Меню менеджера продаж
@@ -152,61 +152,70 @@
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-400"
                             aria-labelledby="dropdownLargeButton">
 
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('SELLMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/product" data-mdb-ripple="true" data-mdb-ripple-color="light">Товары</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('SELLMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/product/size" data-mdb-ripple="true" data-mdb-ripple-color="light">Размеры</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('SELLMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/material" data-mdb-ripple="true" data-mdb-ripple-color="light">Материалы</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"
+                                sec:authorize="hasAuthority('SELLMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                    href="/product/type" data-mdb-ripple="true" data-mdb-ripple-color="light">Виды</a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-
-
-                <li
-                        >
-                    <button id="userDropdownNavbarLink1" data-dropdown-toggle="userDropdownNavbar1"
-                            class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
-                        Меню покупателя
-                        <svg class="ml-1 w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="userDropdownNavbar1"
-                         class="hidden z-10 w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-400"
-                            aria-labelledby="dropdownLargeButton">
-<!--                            <li class="nav-item"-->
-<!--                                sec:authorize="hasAuthority('USER')">-->
-<!--                                <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"-->
-<!--                                   href="/product" data-mdb-ripple="true" data-mdb-ripple-color="light">Профиль</a>-->
-<!--                            </li>-->
                             <li class="nav-item"
-                                >
+                                sec:authorize="hasAuthority('SELLMANAGER')">
                                 <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                   href="/product/size" data-mdb-ripple="true" data-mdb-ripple-color="light">Корзина</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                   href="/material" data-mdb-ripple="true" data-mdb-ripple-color="light">Заказы</a>
+                                   href="/certificate" data-mdb-ripple="true" data-mdb-ripple-color="light">Сертификаты</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+
+<!--                <li-->
+<!--                        >-->
+<!--                    <button id="userDropdownNavbarLink1" data-dropdown-toggle="userDropdownNavbar1"-->
+<!--                            class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">-->
+<!--                        Меню покупателя-->
+<!--                        <svg class="ml-1 w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"-->
+<!--                             xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path fill-rule="evenodd"-->
+<!--                                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"-->
+<!--                                  clip-rule="evenodd"></path>-->
+<!--                        </svg>-->
+<!--                    </button>-->
+                    <!-- Dropdown menu -->
+<!--                    <div id="userDropdownNavbar1"-->
+<!--                         class="hidden z-10 w-44 font-normal bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">-->
+<!--                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-400"-->
+<!--                            aria-labelledby="dropdownLargeButton">-->
+<!--&lt;!&ndash;                            <li class="nav-item"&ndash;&gt;-->
+<!--&lt;!&ndash;                                sec:authorize="hasAuthority('USER')">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   href="/product" data-mdb-ripple="true" data-mdb-ripple-color="light">Профиль</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </li>&ndash;&gt;-->
+<!--                            <li class="nav-item"-->
+<!--                                >-->
+<!--                                <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"-->
+<!--                                   href="/product/size" data-mdb-ripple="true" data-mdb-ripple-color="light">Корзина</a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"-->
+<!--                                   href="/material" data-mdb-ripple="true" data-mdb-ripple-color="light">Заказы</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
 
 
 

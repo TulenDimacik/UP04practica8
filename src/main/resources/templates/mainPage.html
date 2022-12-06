@@ -8,9 +8,11 @@
 
 <body >
 <div th:insert="blocks/header"></div>
-<form th:action="${'/main'}" th:each="ff : ${users}">
+<div></div>
+<!--<h1 style="color: white;text-align: center">Добро пожаловать в информационную систему Магазина одежды!!!</h1>-->
+<form th:action="${'/main'}">
     <table>
-        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td><td>Другое</td></tr>
+        <tr><td>Название товара</td><td>Цена</td><td>Размер</td><td>Вид</td><td>Материал</td></tr>
         <tr th:each="el : ${products}">
             <td th:text="${el.productName}"/>
             <td th:text="${el.price}"/>
@@ -28,9 +30,6 @@
                 <from th:each="mat : ${el.getMaterial()}">
                     <p th:text="${mat.getMaterialName()}"/>
                 </from>
-            </td>
-            <td>
-                <a class="btn-outline-primary1" th:href="'/main/'+${ff.id}+'/'+${el.idProduct}+'/add'">В корзину 🛒</a>
             </td>
         </tr>
     </table>

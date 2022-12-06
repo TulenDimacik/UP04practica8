@@ -14,7 +14,7 @@ public class Material {
     @NotEmpty(message = "Поле не может быть пустым")
     @Size(min = 2,max =15, message = "Размер должен быть от 2 до 15")
     private String materialName;
-    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "material", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     private Collection<Product> products;
     public Long getIdMaterial() {return idMaterial;}
 

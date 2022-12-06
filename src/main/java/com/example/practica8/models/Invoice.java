@@ -9,11 +9,11 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idInvoice;
 
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Warehouse warehouse;
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Product product;
-    @ManyToOne(optional = true)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Employee employee;
 
     public Long getIdInvoice() {

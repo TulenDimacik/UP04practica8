@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <title>Добавление сертификата</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:insert="blocks/header"></div>
+<div class="col-lg-12 login-title">Добавление сертификата</div>
+<div class="col-lg-12 login-form">
+    <form th:action="${'/certificate/add'}" th:object="${certificate}" method="post">
+        <div class="col-lg-12 login-title">
+            <label style="margin-bottom: -15px" class="form-control-label">Название сертификата</label>
+            <div style="margin-bottom: -15px"></div>
+            <input type="text" th:field="*{certificateName}" name="certificateName">
+            <div style="color: red;font-size: 10px;margin-top: -20px" th:if="${#fields.hasErrors('certificateName')}" th:errors="*{certificateName}"></div>
+            <div style="margin-bottom: -15px"></div>
+            <label style="margin-left: 53px" class="form-control-label">Дата выдачи</label>
+            <div style="margin-bottom: -15px"></div>
+            <input type="date" th:field="*{issueDate}" name="issueDate" >
+        </div>
+        <div class="center-divv">
+            <button class="btn-outline-primary77" type="submit">Добавить</button>
+        </div>
+    </form>
+</div>
+
+<div th:insert="blocks/footer"></div>
+</body>
+</html>

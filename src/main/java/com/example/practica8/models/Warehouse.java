@@ -15,7 +15,7 @@ public class Warehouse {
     @Size(min = 5, max = 60, message = "Размер должен быть от 5 до 60")
     private String warehouseAddress;
 
-    @OneToMany(mappedBy = "warehouse", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "warehouse", fetch = FetchType.EAGER,  cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Invoice> invoices;
 
     public Long getIdWarehouse() {

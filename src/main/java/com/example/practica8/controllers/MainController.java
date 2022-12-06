@@ -27,8 +27,6 @@ public class MainController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    CartRepository cartRepository;
 
     @GetMapping("/main")
     public String productMain(Model model)
@@ -49,31 +47,10 @@ public class MainController {
         model.addAttribute("products", products);
         return "mainPage";
     }
-    @GetMapping ("/main/{id}/{idProduct}/add")
-    public  String cartEdit(@PathVariable("id") Long id,
-                            @PathVariable("idProduct") Long idProduct, Model model)
-    {
-        Product res = productRepository.findById(idProduct).orElseThrow();
-        model.addAttribute("product",res);
-
-        User res1 = userRepository.findById(id).orElseThrow();
-        model.addAttribute("user",res1);
 
 
-        return "cartAdd";
-    }
 
 
-    @PostMapping("/main/{id}/{idProduct}/add")// добавление в бд
-    public String cartAdd(@ModelAttribute("cart") Cart cart, @PathVariable("id") Long id,
-                          @PathVariable("idProduct") Long idProduct,
-                             Model model)
-    {
-        cart.setProduct(productRepository.findByIdProduct(idProduct));
-        cart.setUser(userRepository.findUserById(id));
-        cartRepository.save(cart);
-        return "redirect:/main";
-    }
 //
 //    @GetMapping("/client/{id_client}/{id_product}/remove")
 //    public  String clientProductDelete(@PathVariable(value = "id_client") long id_client,

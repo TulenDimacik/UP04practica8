@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Сертификаты</title>
+</head>
+
+<body>
+<div th:insert="blocks/header"></div>
+<form th:action="${'/certificate'}">
+    <table  class="table">
+        <tr><td>Название сертификата</td><td>Дата выдачи</td><td>Другое</td></tr>
+        <tr th:each="el : ${certificates}">
+            <td th:text="${el.certificateName}"/>
+            <td th:text="${el.issueDate}"/>
+            <td>
+                <a class="btn-outline-primary1" th:href="'/certificate/'+${el.idCertificate}+'/remove'">Удалить❌</a>
+            </td>
+        </tr>
+    </table>
+    <a class="btn-outline-primary77" th:href="'/certificate/add'">Добавить</a>
+    <div th:insert="blocks/footer"></div>
+</form>
+</body>
+
+
+</html>
